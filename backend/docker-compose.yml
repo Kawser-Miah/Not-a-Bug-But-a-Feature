@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: hackathon-app
+    ports:
+      - "8000:8000"
+    environment:
+      # Provide your real keys via an .env file or export before running compose
+      GROQ_API_KEY: ${GROQ_API_KEY:-replace_me}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-replace_me}
+      DATABASE_URL: ${DATABASE_URL:-sqlite:///./hackathon.db}
+      PYTHONUNBUFFERED: 1
+    # Uncomment for live-reload development (note: this will override the built .venv)
+    # volumes:
+    #   - .:/app
+    restart: unless-stopped
+
+    # Run migrations automatically then start the server
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket;import sys;s=socket.socket();s.connect(('127.0.0.1',8000));s.close()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Optional: separate one-off service to just run migrations
+  migrate:
+    build: .
+    command: ["alembic", "upgrade", "head"]
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-sqlite:///./hackathon.db}
+    profiles: ["migrate"]
+
+# Named volumes (add if you later want to persist sqlite file separately)
+# volumes:
+#   db_data:

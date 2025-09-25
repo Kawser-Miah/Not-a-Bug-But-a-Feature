@@ -1,0 +1,33 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Local environment & secrets
+.env
+
+# SQLite database & migration artifacts
+hackathon.db
+*.sqlite3
+
+# Python tooling caches
+.pytest_cache/
+.mypy_cache/
+
+# OS / Editor noise
+.DS_Store
+*.swp
+
+# Docker
+.dockerignore
+
+# uv build artifacts (if any future)
+.uv
+
+.env

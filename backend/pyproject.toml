@@ -1,0 +1,22 @@
+[project]
+name = "hackathon3"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.117.1",
+    "google-generativeai>=0.8.5",
+    "langchain-chroma>=0.2.6",
+    "langchain-community>=0.3.29",
+    "langchain-core>=0.3.76",
+    "langchain-google-genai>=2.0.10",
+    "langchain-groq>=0.3.8",
+    "pydantic-settings>=2.10.1",
+    "uvicorn>=0.37.0",
+    "sqlalchemy>=2.0.0",
+    "alembic>=1.13.0",
+    "python-multipart>=0.0.6",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+]
